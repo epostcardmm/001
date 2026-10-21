@@ -1153,15 +1153,15 @@
 
     <!-- FLOATING ACTION BUTTONS -->
     <div class="fab-stack">
-        <button class="fab-btn fab-preview" onclick="fullScreenPreview()" id="fabPreview">🚀 Preview</button>
-        <button class="fab-btn fab-telegram" onclick="openTelegramModal()" id="fabTelegram">✈️ Telegram</button>
+        <button class="fab-btn fab-preview" onclick="fullScreenPreview()" id="fabPreview">🚀 Live Preview</button>
+        <button class="fab-btn fab-telegram" onclick="openTelegramModal()" id="fabTelegram">✈️ Send To Admin</button>
     </div>
 
     <!-- TELEGRAM POPUP MODAL -->
     <div class="telegram-modal-overlay" id="telegramModalOverlay" onclick="closeTelegramModalOnBackdrop(event)">
         <div class="telegram-modal">
             <div class="telegram-modal-header">
-                <h4 id="hdrTelegram">✈️ Telegram delivery</h4>
+                <h4 id="hdrTelegram">✈️ File delivery</h4>
                 <button class="telegram-modal-close" onclick="closeTelegramModal()">✕</button>
             </div>
 
@@ -1209,11 +1209,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label id="lblTelegramImage">Upload image</label>
+                    <label id="lblTelegramImage">Upload Payment image</label>
                     <input type="file" id="telegramImageFile" accept="image/*">
                 </div>
                 <div class="form-group">
-                    <label id="lblTelegramFileName">HTML file name</label>
+                    <label id="lblTelegramFileName">File Name</label>
                     <input type="text" id="telegramHtmlFileName" placeholder="e.g. index.html">
                 </div>
                 <button type="button" class="btn-main" style="background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.3);" onclick="sendToTelegramBot()" id="btnTelegramSend">🚀 Send to Telegram</button>
@@ -1238,7 +1238,7 @@
                 </div>
 
                 <p class="ty-msg">
-                    သို့ငွေလွှဲပြေစာလေးနဲ့ ရေးထည့်လိုက်သော File Name လေးပို့ပြီး
+                    Admin acc သို့ငွေလွှဲပြေစာလေးနဲ့ ရေးထည့်လိုက်သော File Name လေးပို့ပြီး
                     15 မိနစ်အတွင်း Link နှင့် QR လေးထုတ်ယူနိုင်ပါတယ်ခဗျ ..
                 </p>
 
@@ -1251,18 +1251,18 @@
     <div id="playModeWrapper" style="display: none; position: fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(15, 23, 42, 0.55); backdrop-filter: blur(6px); z-index: 99999; justify-content: center; align-items: center; padding: 20px;">
         <!-- INTRO SCREEN -->
         <div class="card-container" id="introScreen" style="display: none; margin: auto;">
-            <h2 style="margin-bottom: 10px; font-size: 24px;" id="introTitleText">Hello ရည်းစားဟောင်းလေး</h2>
-            <p style="font-size: 14px; margin-bottom: 10px;" id="introSubtitleText">Click The Heart</p>
+            <h2 style="margin-bottom: 10px; font-size: 24px;" id="introTitleText">Hello ရည်းစားဟောင်း/Crush လေး</h2>
+            <p style="font-size: 14px; margin-bottom: 10px;" id="introSubtitleText">Click Hear</p>
             <div class="heart-start-btn" id="startHeartBtn">
-                <img id="introHeartImg" src="https://media.tenor.com/RjFzdxaLVNMAAAAi/heart.gif" alt="Heart GIF">
+                <img id="introHeartImg" src="https://media1.tenor.com/m/MIW5yLJpSNAAAAAC/bubu-dudu.gif" alt="Heart GIF">
             </div>
             <button class="btn-secondary" style="margin-top: 15px; background: #6366f1; color: white; border: none;" onclick="exitPlayMode()" id="btnBackToEditor1">⚙️ Back to editor</button>
         </div>
 
         <!-- MAIN CARD QUESTION FLOW -->
         <div class="card-container" id="mainCard" style="display: none; margin: auto;">
-            <h2 id="questionText" style="font-size: 22px;">ပြန်ချစ်ကြည့်ကြမလား?</h2>
-            <div class="gif-container"><img id="statusGif" src="https://media1.tenor.com/m/2K0bjyLKldkAAAAC/dudu-dudu-bubu.gif"></div>
+            <h2 id="questionText" style="font-size: 22px;">ပြန်ချစ်ကြရအောင်လေ ရည်းစားဟောင်းလေး</h2>
+            <div class="gif-container"><img id="statusGif" src="https://media.tenor.com/qQmsOJoeMoMAAAAi/dudu-bubu.gif"></div>
             <div class="btn-group" id="btnGroup">
                 <button id="yesBtn" class="choice-btn primary-btn" onclick="handleInteraction(true)">ချစ်တယ်</button>
                 <button id="noBtn" class="choice-btn secondary-btn" onclick="handleInteraction(false)">မချစ်ဘူး</button>
@@ -1361,11 +1361,11 @@
                 stepsHeader: '📋 Question steps',
                 livePreview: '👀 Live preview',
                 fabPreview: '🚀 Preview',
-                fabTelegram: '✈️ Telegram',
-                telegramHdr: '✈️ Telegram delivery',
+                fabTelegram: '✈️ Send to Admin',
+                telegramHdr: '✈️ File delivery',
                 telegramImage: 'Upload image',
-                telegramFileName: 'HTML file name',
-                telegramSend: '🚀 Send to Telegram',
+                telegramFileName: 'File Name',
+                telegramSend: '🚀 Send to Admin',
                 backToEditor: '⚙️ Back to editor',
                 addStep: '➕ Add Step',
                 stepLabel: 'Step',
@@ -1503,11 +1503,11 @@
         // DATA
         // ============================================================
         let defaultSteps = [
-            { question: "ပြန်ချစ်ကြည့်ကြမလား?", yes: "ချစ်တယ်", no: "မချစ်ဘူး", gif: "https://media1.tenor.com/m/2K0bjyLKldkAAAAC/dudu-dudu-bubu.gif", type: "shrink", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" },
-            { question: "သတိရနေခဲ့တာ သိရဲ့လား", yes: "ဒီကရောပဲ", no: "မယုံပါဘူး", gif: "https://media.tenor.com/PkvpJyo2rSQAAAAi/bubu-dudu-sseeyall.gif", type: "run", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" },
-            { question: "ပြန်တွဲကြမယ်လေနော် နော်..", yes: "တွဲကြမယ်", no: "တော်ပါပြီ", gif: "https://media.tenor.com/BKP6erkQWjMAAAAi/bubu-dudu-sseeyall.gif", type: "fade", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" },
-            { question: "ပြန်လာမယ်မလား", yes: "ပြန်လာမယ်", no: "မလာပါဘူး", gif: "https://media.tenor.com/BL6TlnbQD0sAAAAi/dudu-surprise.gif", type: "fullscreen", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" },
-            { question: "ဒါဆို ရည်းစားပြန်ဖြစ်ပြီနော်..ဟဲဟဲ", yes: "Yes,Of Course", no: "No..No..No", gif: "https://media1.tenor.com/m/c8KXOOGytDYAAAAC/dudu-dudu-bubu.gif", type: "magnet", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" }
+            { question: "ပြန်ချစ်ကြရအောင်လေ ရည်းစားဟောင်းလေး", yes: "ချစ်တယ်", no: "မချစ်ဘူး", gif: "https://media.tenor.com/qQmsOJoeMoMAAAAi/dudu-bubu.gif", type: "shrink", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" },
+            { question: "သတိရနေခဲ့တာ သိရဲ့လား", yes: "ဒီကရောပဲ", no: "မယုံပါဘူး", gif: "https://media.tenor.com/eEltmuPyMHUAAAAi/hugs-hug.gif", type: "run", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" },
+            { question: "ပြန်တွဲကြမယ်လေနော် နော်..", yes: "တွဲကြမယ်", no: "တော်ပါပြီ", gif: "https://media.tenor.com/bM7REDRn-BsAAAAi/bubu-dudu-sseeyall.gif", type: "fade", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" },
+            { question: "ပြန်လာမယ်မလား", yes: "ပြန်လာမယ်", no: "မလာပါဘူး", gif: "https://media1.tenor.com/m/rOiSuwloJpsAAAAC/emrananhret.gif", type: "fullscreen", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" },
+            { question: "ဒါဆို ရည်းစားပြန်ဖြစ်ပြီနော်..ဟဲဟဲ", yes: "Yes,Of Course", no: "No..No..No", gif: "https://media.tenor.com/HYiP0K9CzhoAAAAi/bubu-dudu.gif", type: "magnet", qColor: "#1e293b", yesColor: "#0d9488", noColor: "#f43f5e", cardBg: "#ffffff" }
         ];
 
         let activeSteps = JSON.parse(JSON.stringify(defaultSteps));
