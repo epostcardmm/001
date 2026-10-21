@@ -146,7 +146,7 @@
             box-shadow: 0 3px 8px -2px rgba(79, 70, 229, 0.4);
         }
 
-        /* ----------  SHORTCUT BAR (sticky, pinned to top)  ---------- */
+        /* ----------  SHORTCUT BAR  ---------- */
         .shortcut-bar {
             position: sticky;
             top: 0;
@@ -414,6 +414,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow-y: auto;
         }
 
         .telegram-modal-overlay.open {
@@ -425,9 +426,22 @@
             border-radius: 28px;
             padding: 26px;
             width: 100%;
-            max-width: 400px;
+            max-width: 440px;
+            max-height: 92vh;
+            overflow-y: auto;
             box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.25);
             animation: modalPop 0.25s ease;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+
+        .telegram-modal::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .telegram-modal::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
         }
 
         @keyframes modalPop {
@@ -467,11 +481,129 @@
             justify-content: center;
             transition: all 0.2s;
             line-height: 1;
+            flex-shrink: 0;
         }
 
         .telegram-modal-close:hover {
             background: #fee2e2;
             color: #dc2626;
+        }
+
+        /* ----------  PAYMENT INFO SECTION  ---------- */
+        .payment-section {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 1.5px solid #fde68a;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .payment-section h5 {
+            color: #b45309;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #fcd34d;
+            letter-spacing: -0.1px;
+        }
+
+        .pay-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 10px;
+            background: #ffffff;
+            border: 1px solid #fef3c7;
+            border-radius: 12px;
+            margin-bottom: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .pay-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .pay-row:hover {
+            border-color: #fcd34d;
+            box-shadow: 0 2px 8px -2px rgba(245, 158, 11, 0.15);
+        }
+
+        .pay-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #92400e;
+            letter-spacing: 0.2px;
+            flex-shrink: 0;
+        }
+
+        .pay-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e293b;
+            flex: 1;
+            text-align: right;
+            word-break: break-all;
+            letter-spacing: 0.2px;
+        }
+
+        .pay-copy-btn {
+            flex-shrink: 0;
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            color: #b45309;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .pay-copy-btn:hover {
+            background: #fcd34d;
+            color: #78350f;
+        }
+
+        .pay-copy-btn.copied {
+            background: #bbf7d0;
+            border-color: #86efac;
+            color: #15803d;
+        }
+
+        .pay-price-row {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-color: #fecaca;
+            margin-bottom: 10px;
+        }
+
+        .pay-price-row .pay-label {
+            color: #b91c1c;
+        }
+
+        .pay-price-row .pay-value {
+            color: #dc2626;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .pay-price-row .pay-copy-btn {
+            background: #fee2e2;
+            border-color: #fecaca;
+            color: #b91c1c;
+        }
+
+        .pay-price-row .pay-copy-btn:hover {
+            background: #fecaca;
+            color: #991b1b;
         }
 
         /* ----------  STEP BOX  ---------- */
@@ -918,6 +1050,48 @@
                 <h4 id="hdrTelegram">✈️ Telegram delivery</h4>
                 <button class="telegram-modal-close" onclick="closeTelegramModal()">✕</button>
             </div>
+
+            <!-- PAYMENT INFO SECTION -->
+            <div class="payment-section">
+                <h5>💳 Payment Info</h5>
+
+                <div class="pay-row pay-price-row">
+                    <span class="pay-label">Price</span>
+                    <span class="pay-value" id="payPrice">7000 KS</span>
+                    <button class="pay-copy-btn" data-copy="7000 KS" onclick="copyPayValue(this)">📋 Copy</button>
+                </div>
+
+                <div class="pay-row">
+                    <span class="pay-label">K Pay</span>
+                    <span class="pay-value">09797721727</span>
+                    <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
+                </div>
+
+                <div class="pay-row">
+                    <span class="pay-label">Wave Pay</span>
+                    <span class="pay-value">09797721727</span>
+                    <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
+                </div>
+
+                <div class="pay-row">
+                    <span class="pay-label">CB Pay</span>
+                    <span class="pay-value">09797721727</span>
+                    <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
+                </div>
+
+                <div class="pay-row">
+                    <span class="pay-label">AYA Pay</span>
+                    <span class="pay-value">09691437097</span>
+                    <button class="pay-copy-btn" data-copy="09691437097" onclick="copyPayValue(this)">📋 Copy</button>
+                </div>
+
+                <div class="pay-row">
+                    <span class="pay-label">Name</span>
+                    <span class="pay-value">Kyi Khant Kyaw</span>
+                    <button class="pay-copy-btn" data-copy="Kyi Khant Kyaw" onclick="copyPayValue(this)">📋 Copy</button>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label id="lblTelegramImage">Upload image</label>
                 <input type="file" id="telegramImageFile" accept="image/*">
@@ -1132,6 +1306,43 @@
         }
 
         // ============================================================
+        // COPY PAYMENT VALUE
+        // ============================================================
+        function copyPayValue(btn) {
+            const val = btn.getAttribute('data-copy');
+            const originalHTML = btn.innerHTML;
+            const doCopy = () => {
+                btn.classList.add('copied');
+                btn.innerHTML = '✅ Copied';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = originalHTML;
+                }, 1400);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(val).then(doCopy).catch(() => {
+                    fallbackCopy(val);
+                    doCopy();
+                });
+            } else {
+                fallbackCopy(val);
+                doCopy();
+            }
+        }
+
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+        }
+
+        // ============================================================
         // DATA
         // ============================================================
         let defaultSteps = [
@@ -1153,13 +1364,12 @@
         let noClickCounts = [];
 
         // ============================================================
-        // SHORTCUT BAR — with mouse wheel horizontal scroll + drag
+        // SHORTCUT BAR
         // ============================================================
         function renderShortcutBar() {
             const bar = document.getElementById('shortcutBar');
             bar.innerHTML = '';
 
-            // Intro chip
             const introChip = document.createElement('button');
             introChip.type = 'button';
             introChip.className = 'shortcut-chip' + (currentPreviewStep === 'intro' ? ' active' : '');
@@ -1167,7 +1377,6 @@
             introChip.onclick = () => jumpToSection('intro');
             bar.appendChild(introChip);
 
-            // Step chips
             activeSteps.forEach((s, i) => {
                 const chip = document.createElement('button');
                 chip.type = 'button';
@@ -1177,7 +1386,6 @@
                 bar.appendChild(chip);
             });
 
-            // Add Step chip
             const addChip = document.createElement('button');
             addChip.type = 'button';
             addChip.className = 'shortcut-chip add-chip';
@@ -1185,7 +1393,6 @@
             addChip.onclick = () => addNewStep();
             bar.appendChild(addChip);
 
-            // Success chip
             const successChip = document.createElement('button');
             successChip.type = 'button';
             successChip.className = 'shortcut-chip' + (currentPreviewStep === 'success' ? ' active' : '');
@@ -1194,7 +1401,6 @@
             bar.appendChild(successChip);
         }
 
-        // Mouse wheel → horizontal scroll (PC friendly)
         (function setupShortcutWheelScroll() {
             const bar = document.getElementById('shortcutBar');
             bar.addEventListener('wheel', function(e) {
@@ -1205,7 +1411,6 @@
             }, { passive: false });
         })();
 
-        // Drag-to-scroll on PC
         (function setupShortcutDrag() {
             const bar = document.getElementById('shortcutBar');
             let isDown = false;
@@ -1243,7 +1448,6 @@
                 }
             });
 
-            // Prevent click after drag
             bar.addEventListener('click', function(e) {
                 if (moved) {
                     e.preventDefault();
@@ -1381,7 +1585,6 @@
             renderShortcutBar();
         }
 
-        // Re-apply labels without rebuilding DOM (for language switch)
         function renderEditorStepsLabels() {
             activeSteps.forEach((s, index) => {
                 const box = document.getElementById(`step-box-${index}`);
@@ -1407,7 +1610,6 @@
                 if (labels[8]) labels[8].textContent = t('animationLabel');
                 const uploadBtn = box.querySelector('button[onclick^="document.getElementById(\'egifFile"]');
                 if (uploadBtn) uploadBtn.textContent = t('uploadBtn');
-                // Update animation option text
                 const typeSelect = document.getElementById(`etype_${index}`);
                 if (typeSelect) {
                     Array.from(typeSelect.options).forEach(opt => {
@@ -1496,7 +1698,6 @@
                 if(typeEl) activeSteps[i].type = typeEl.value;
             }
             updateLivePreviewCard();
-            // Update shortcut bar labels
             document.querySelectorAll('.shortcut-chip').forEach((chip, idx) => {
                 if (idx > 0 && idx <= activeSteps.length) {
                     const s = activeSteps[idx - 1];
