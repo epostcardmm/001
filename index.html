@@ -606,6 +606,120 @@
             color: #991b1b;
         }
 
+        /* ----------  SUCCESS THANK-YOU SECTION  ---------- */
+        .thankyou-section {
+            display: none;
+            text-align: center;
+            padding: 6px 0 2px 0;
+        }
+
+        .thankyou-section.show {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .thankyou-badge {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 14px auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #34d399, #10b981);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 24px -6px rgba(16, 185, 129, 0.45);
+        }
+
+        .thankyou-section h3 {
+            color: #065f46;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .thankyou-section .ty-msg {
+            color: #334155;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            padding: 0 4px;
+        }
+
+        .contact-copy-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: #f0fdf4;
+            border: 1.5px solid #bbf7d0;
+            border-radius: 14px;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+        }
+
+        .contact-copy-row:hover {
+            border-color: #86efac;
+            box-shadow: 0 2px 10px -2px rgba(16, 185, 129, 0.15);
+        }
+
+        .contact-copy-row .cc-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #047857;
+            flex-shrink: 0;
+            letter-spacing: 0.2px;
+        }
+
+        .contact-copy-row .cc-value {
+            font-size: 13px;
+            font-weight: 700;
+            color: #065f46;
+            flex: 1;
+            text-align: right;
+            word-break: break-all;
+        }
+
+        .cc-copy-btn {
+            flex-shrink: 0;
+            background: #dcfce7;
+            border: 1px solid #bbf7d0;
+            color: #047857;
+            border-radius: 8px;
+            padding: 5px 9px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+
+        .cc-copy-btn:hover {
+            background: #bbf7d0;
+            color: #065f46;
+        }
+
+        .cc-copy-btn.copied {
+            background: #10b981;
+            border-color: #059669;
+            color: #ffffff;
+        }
+
+        .thankyou-section .ty-footer {
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+            letter-spacing: 0.2px;
+        }
+
         /* ----------  STEP BOX  ---------- */
         .step-box {
             background: #ffffff;
@@ -1051,57 +1165,85 @@
                 <button class="telegram-modal-close" onclick="closeTelegramModal()">✕</button>
             </div>
 
-            <!-- PAYMENT INFO SECTION -->
-            <div class="payment-section">
-                <h5>💳 Payment Info</h5>
+            <!-- MAIN SEND FORM (hidden on success) -->
+            <div id="telegramFormBlock">
+                <!-- PAYMENT INFO SECTION -->
+                <div class="payment-section">
+                    <h5>💳 Payment Info</h5>
 
-                <div class="pay-row pay-price-row">
-                    <span class="pay-label">Price</span>
-                    <span class="pay-value" id="payPrice">7000 KS</span>
-                    <button class="pay-copy-btn" data-copy="7000 KS" onclick="copyPayValue(this)">📋 Copy</button>
+                    <div class="pay-row pay-price-row">
+                        <span class="pay-label">Price</span>
+                        <span class="pay-value" id="payPrice">7000 KS</span>
+                        <button class="pay-copy-btn" data-copy="7000 KS" onclick="copyPayValue(this)">📋 Copy</button>
+                    </div>
+
+                    <div class="pay-row">
+                        <span class="pay-label">K Pay</span>
+                        <span class="pay-value">09797721727</span>
+                        <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
+                    </div>
+
+                    <div class="pay-row">
+                        <span class="pay-label">Wave Pay</span>
+                        <span class="pay-value">09797721727</span>
+                        <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
+                    </div>
+
+                    <div class="pay-row">
+                        <span class="pay-label">CB Pay</span>
+                        <span class="pay-value">09797721727</span>
+                        <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
+                    </div>
+
+                    <div class="pay-row">
+                        <span class="pay-label">AYA Pay</span>
+                        <span class="pay-value">09691437097</span>
+                        <button class="pay-copy-btn" data-copy="09691437097" onclick="copyPayValue(this)">📋 Copy</button>
+                    </div>
+
+                    <div class="pay-row">
+                        <span class="pay-label">Name</span>
+                        <span class="pay-value">Kyi Khant Kyaw</span>
+                        <button class="pay-copy-btn" data-copy="Kyi Khant Kyaw" onclick="copyPayValue(this)">📋 Copy</button>
+                    </div>
                 </div>
 
-                <div class="pay-row">
-                    <span class="pay-label">K Pay</span>
-                    <span class="pay-value">09797721727</span>
-                    <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
+                <div class="form-group">
+                    <label id="lblTelegramImage">Upload image</label>
+                    <input type="file" id="telegramImageFile" accept="image/*">
                 </div>
-
-                <div class="pay-row">
-                    <span class="pay-label">Wave Pay</span>
-                    <span class="pay-value">09797721727</span>
-                    <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
+                <div class="form-group">
+                    <label id="lblTelegramFileName">HTML file name</label>
+                    <input type="text" id="telegramHtmlFileName" placeholder="e.g. index.html">
                 </div>
-
-                <div class="pay-row">
-                    <span class="pay-label">CB Pay</span>
-                    <span class="pay-value">09797721727</span>
-                    <button class="pay-copy-btn" data-copy="09797721727" onclick="copyPayValue(this)">📋 Copy</button>
-                </div>
-
-                <div class="pay-row">
-                    <span class="pay-label">AYA Pay</span>
-                    <span class="pay-value">09691437097</span>
-                    <button class="pay-copy-btn" data-copy="09691437097" onclick="copyPayValue(this)">📋 Copy</button>
-                </div>
-
-                <div class="pay-row">
-                    <span class="pay-label">Name</span>
-                    <span class="pay-value">Kyi Khant Kyaw</span>
-                    <button class="pay-copy-btn" data-copy="Kyi Khant Kyaw" onclick="copyPayValue(this)">📋 Copy</button>
-                </div>
+                <button type="button" class="btn-main" style="background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.3);" onclick="sendToTelegramBot()" id="btnTelegramSend">🚀 Send to Telegram</button>
+                <div id="telegramStatus" style="font-size: 12px; margin-top: 10px; font-weight: 600; color: #2563eb; display: none;">Sending…</div>
             </div>
 
-            <div class="form-group">
-                <label id="lblTelegramImage">Upload image</label>
-                <input type="file" id="telegramImageFile" accept="image/*">
+            <!-- THANK YOU SUCCESS BLOCK -->
+            <div class="thankyou-section" id="thankyouSection">
+                <div class="thankyou-badge">✅</div>
+                <h3>ကျေးဇူးတင်ပါတယ် 🩷</h3>
+
+                <div class="contact-copy-row">
+                    <span class="cc-label">Admin TikTok</span>
+                    <span class="cc-value">@htpp.epostcard</span>
+                    <button class="cc-copy-btn" data-copy="@htpp.epostcard" onclick="copyContactValue(this)">📋 Copy</button>
+                </div>
+
+                <div class="contact-copy-row">
+                    <span class="cc-label">Admin Telegram</span>
+                    <span class="cc-value">@epostcarmm</span>
+                    <button class="cc-copy-btn" data-copy="@epostcarmm" onclick="copyContactValue(this)">📋 Copy</button>
+                </div>
+
+                <p class="ty-msg">
+                    သို့ငွေလွှဲပြေစာလေးနဲ့ ရေးထည့်လိုက်သော File Name လေးပို့ပြီး
+                    15 မိနစ်အတွင်း Link နှင့် QR လေးထုတ်ယူနိုင်ပါတယ်ခဗျ ..
+                </p>
+
+                <p class="ty-footer">ပျော်ရွှင်စရာနေ့ရက်လေးပိုင်ဆိုင်ကြပါစေ ..🩷</p>
             </div>
-            <div class="form-group">
-                <label id="lblTelegramFileName">HTML file name</label>
-                <input type="text" id="telegramHtmlFileName" placeholder="e.g. index.html">
-            </div>
-            <button type="button" class="btn-main" style="background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.3);" onclick="sendToTelegramBot()" id="btnTelegramSend">🚀 Send to Telegram</button>
-            <div id="telegramStatus" style="font-size: 12px; margin-top: 10px; font-weight: 600; color: #2563eb; display: none;">Sending…</div>
         </div>
     </div>
 
@@ -1306,8 +1448,19 @@
         }
 
         // ============================================================
-        // COPY PAYMENT VALUE
+        // COPY HELPERS
         // ============================================================
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+        }
+
         function copyPayValue(btn) {
             const val = btn.getAttribute('data-copy');
             const originalHTML = btn.innerHTML;
@@ -1319,27 +1472,31 @@
                     btn.innerHTML = originalHTML;
                 }, 1400);
             };
-
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(val).then(doCopy).catch(() => {
-                    fallbackCopy(val);
-                    doCopy();
-                });
+                navigator.clipboard.writeText(val).then(doCopy).catch(() => { fallbackCopy(val); doCopy(); });
             } else {
                 fallbackCopy(val);
                 doCopy();
             }
         }
 
-        function fallbackCopy(text) {
-            const ta = document.createElement('textarea');
-            ta.value = text;
-            ta.style.position = 'fixed';
-            ta.style.opacity = '0';
-            document.body.appendChild(ta);
-            ta.select();
-            try { document.execCommand('copy'); } catch (e) {}
-            document.body.removeChild(ta);
+        function copyContactValue(btn) {
+            const val = btn.getAttribute('data-copy');
+            const originalHTML = btn.innerHTML;
+            const doCopy = () => {
+                btn.classList.add('copied');
+                btn.innerHTML = '✅';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = originalHTML;
+                }, 1400);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(val).then(doCopy).catch(() => { fallbackCopy(val); doCopy(); });
+            } else {
+                fallbackCopy(val);
+                doCopy();
+            }
         }
 
         // ============================================================
@@ -1496,6 +1653,10 @@
         // TELEGRAM MODAL
         // ============================================================
         function openTelegramModal() {
+            // Reset to form view each time it opens
+            document.getElementById('telegramFormBlock').style.display = 'block';
+            document.getElementById('thankyouSection').classList.remove('show');
+            document.getElementById('telegramStatus').style.display = 'none';
             document.getElementById('telegramModalOverlay').classList.add('open');
         }
 
@@ -2619,8 +2780,9 @@
                     throw new Error("HTML file sending failed.");
                 }
 
-                statusEl.style.color = '#16a34a';
-                statusEl.innerText = "✅ Image and HTML sent to Telegram!";
+                // SUCCESS: hide form, show thank-you section
+                document.getElementById('telegramFormBlock').style.display = 'none';
+                document.getElementById('thankyouSection').classList.add('show');
             } catch (error) {
                 statusEl.style.color = '#dc2626';
                 statusEl.innerText = "❌ Error: " + error.message;
