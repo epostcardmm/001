@@ -967,12 +967,12 @@
         }
 
         @keyframes orbitAnim {
-            0% { transform: rotate(0deg) translate(70px) rotate(0deg); }
-            100% { transform: rotate(360deg) translate(70px) rotate(-360deg); }
+            0% { transform: translate(-40px, 0) rotate(0deg) translate(40px) rotate(0deg); }
+            100% { transform: translate(-40px, 0) rotate(360deg) translate(40px) rotate(-360deg); }
         }
         .orbit-active {
-            position: absolute !important;
-            animation: orbitAnim 3s linear infinite;
+            position: relative !important;
+            animation: orbitAnim 2.5s linear infinite;
         }
 
         @media(max-width: 950px) {
@@ -1253,14 +1253,14 @@
                 osc.start(now);
                 osc.stop(now + 0.35);
             } else if (type === 'no' || type === 'dodge') {
-                // Soft, pleasant and cute sine tone for No button (no harsh buzzer)
+                // Soft, pleasant cute tone for No button (smooth and melodious)
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(350, now);
-                osc.frequency.exponentialRampToValueAtTime(220, now + 0.2);
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                osc.frequency.setValueAtTime(440, now);
+                osc.frequency.exponentialRampToValueAtTime(280, now + 0.15);
+                gain.gain.setValueAtTime(0.18, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
                 osc.start(now);
-                osc.stop(now + 0.2);
+                osc.stop(now + 0.15);
             } else if (type === 'click' || type === 'copy') {
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(600, now);
@@ -2077,6 +2077,10 @@
                     }, 1200);
                 }, 1000);
             }
+            else if (step.type === "orbiting") {
+                const orbitTexts = ["ဖမ်းလို့မမီဘူး 😜", "နောက်တစ်ခါ ထပ်ကြိုးစား!", "လက်မြန်မှပေါ့ 😄", "ဟားဟား လွဲသွားပြီ"];
+                noBtn.innerText = orbitTexts[(noClickCounts[currentStep] - 1) % orbitTexts.length];
+            }
             else if (step.type === "guilt_trip") {
                 const guiltTexts = ["Are you sure?", "Really?", "Think of us!", "Click Yes instead"];
                 if (guiltIndex < guiltTexts.length) {
@@ -2444,12 +2448,12 @@
         }
 
         @keyframes orbitAnim {
-            0% { transform: rotate(0deg) translate(70px) rotate(0deg); }
-            100% { transform: rotate(360deg) translate(70px) rotate(-360deg); }
+            0% { transform: translate(-40px, 0) rotate(0deg) translate(40px) rotate(0deg); }
+            100% { transform: translate(-40px, 0) rotate(360deg) translate(40px) rotate(-360deg); }
         }
         .orbit-active {
-            position: absolute !important;
-            animation: orbitAnim 3s linear infinite;
+            position: relative !important;
+            animation: orbitAnim 2.5s linear infinite;
         }
     </style>
 </head>
@@ -2509,11 +2513,11 @@
                 osc.start(now); osc.stop(now + 0.35);
             } else if (type === 'no' || type === 'dodge') {
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(350, now);
-                osc.frequency.exponentialRampToValueAtTime(220, now + 0.2);
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
-                osc.start(now); osc.stop(now + 0.2);
+                osc.frequency.setValueAtTime(440, now);
+                osc.frequency.exponentialRampToValueAtTime(280, now + 0.15);
+                gain.gain.setValueAtTime(0.18, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                osc.start(now); osc.stop(now + 0.15);
             } else if (type === 'click') {
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(600, now);
@@ -2622,6 +2626,10 @@
                         noBtn.disabled = false;
                     }, 1200);
                 }, 1000);
+            }
+            else if (step.type === "orbiting") {
+                const orbitTexts = ["ဖမ်းလို့မမီဘူး 😜", "နောက်တစ်ခါ ထပ်ကြိုးစား!", "လက်မြန်မှပေါ့ 😄", "ဟားဟား လွဲသွားပြီ"];
+                noBtn.innerText = orbitTexts[(noClickCounts[currentStep] - 1) % orbitTexts.length];
             }
             else if (step.type === "guilt_trip") {
                 const guiltTexts = ["Are you sure?", "Really?", "Think of us!", "Click Yes instead"];
