@@ -1213,8 +1213,7 @@
                 <h3 id="successTitleText">💖 Our Love Agreement</h3>
                 <div id="summaryList"></div>
             </div>
-            <button class="btn-secondary" style="background: #10b981; color: white; border: none; margin-top: 15px;" onclick="playSound('click'); restartPlayMode()" id="btnRestart">🔄 ပြန်စမ်းမည် (Try Again)</button>
-            <button class="btn-secondary" style="background: #6366f1; color: white; border: none; margin-top: 8px;" onclick="playSound('click'); exitPlayMode()" id="btnBackToEditor3">⚙️ Back to editor</button>
+            <button class="btn-secondary" style="background: #6366f1; color: white; border: none; margin-top: 15px;" onclick="playSound('click'); exitPlayMode()" id="btnBackToEditor3">⚙️ Back to editor</button>
         </div>
     </div>
 
@@ -1237,7 +1236,6 @@
             const now = audioCtx.currentTime;
 
             if (type === 'heart') {
-                // Magical chime / harp-like ascending notes
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(400, now);
                 osc.frequency.exponentialRampToValueAtTime(800, now + 0.15);
@@ -1246,7 +1244,6 @@
                 osc.start(now);
                 osc.stop(now + 0.3);
             } else if (type === 'yes') {
-                // Cheerful chord/beep
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(523.25, now);
                 osc.frequency.setValueAtTime(659.25, now + 0.08);
@@ -1256,16 +1253,15 @@
                 osc.start(now);
                 osc.stop(now + 0.35);
             } else if (type === 'no' || type === 'dodge') {
-                // Playful pop/blip
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(250, now);
-                osc.frequency.exponentialRampToValueAtTime(120, now + 0.15);
+                // Soft, pleasant and cute sine tone for No button (no harsh buzzer)
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(350, now);
+                osc.frequency.exponentialRampToValueAtTime(220, now + 0.2);
                 gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
                 osc.start(now);
-                osc.stop(now + 0.15);
+                osc.stop(now + 0.2);
             } else if (type === 'click' || type === 'copy') {
-                // Crisp short pop
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(600, now);
                 osc.frequency.exponentialRampToValueAtTime(300, now + 0.08);
@@ -1306,7 +1302,6 @@
                 telegramFileName: 'HTML file name',
                 telegramSend: '🚀 Telegram သို့ ပို့မည်',
                 backToEditor: '⚙️ Editor သို့ ပြန်သွားရန်',
-                restartBtn: '🔄 ပြန်စမ်းမည် (Try Again)',
                 addStep: '➕ Add Step',
                 stepLabel: 'အဆင့်',
                 deleteStep: 'ဖျက်မည်',
@@ -1360,7 +1355,6 @@
                 telegramFileName: 'File Name',
                 telegramSend: '🚀 Send to Admin',
                 backToEditor: '⚙️ Back to editor',
-                restartBtn: '🔄 Try Again',
                 addStep: '➕ Add Step',
                 stepLabel: 'Step',
                 deleteStep: 'Delete',
@@ -1432,7 +1426,6 @@
             document.getElementById('btnBackToEditor1').textContent = t('backToEditor');
             document.getElementById('btnBackToEditor2').textContent = t('backToEditor');
             document.getElementById('btnBackToEditor3').textContent = t('backToEditor');
-            document.getElementById('btnRestart').textContent = t('restartBtn');
             renderShortcutBar();
             renderEditorStepsLabels();
             updatePreviewStepSelector();
@@ -1990,14 +1983,6 @@
             document.getElementById('successScreen').style.display = 'none';
         }
 
-        function restartPlayMode() {
-            document.getElementById('successScreen').style.display = 'none';
-            document.getElementById('introScreen').style.display = 'block';
-            currentStep = 0;
-            userAnswers = [];
-            noClickCounts = new Array(activeSteps.length).fill(0);
-        }
-
         document.getElementById('startHeartBtn').onclick = function(e) {
             playSound('heart');
             const rect = this.getBoundingClientRect();
@@ -2266,7 +2251,7 @@
         }
 
         // ============================================================
-        // PREVIEW/PLAY MODE STANDALONE HTML GENERATION (With Sound Effects)
+        // PREVIEW/PLAY MODE STANDALONE HTML GENERATION (Without Try Again Button)
         // ============================================================
         function generatePreviewHtml() {
             syncLivePreview();
@@ -2495,7 +2480,6 @@
             <h3 id="successTitleText" style="color: ${successTitleColor};">${successTitle}</h3>
             <div id="summaryList"></div>
         </div>
-        <button class="btn-secondary" style="background: #10b981; color: white; border: none;" onclick="playSound('click'); restartPlayMode()">🔄 ပြန်စမ်းမည် (Try Again)</button>
     </div>
 
     <script>
@@ -2524,12 +2508,12 @@
                 gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
                 osc.start(now); osc.stop(now + 0.35);
             } else if (type === 'no' || type === 'dodge') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(250, now);
-                osc.frequency.exponentialRampToValueAtTime(120, now + 0.15);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(350, now);
+                osc.frequency.exponentialRampToValueAtTime(220, now + 0.2);
                 gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-                osc.start(now); osc.stop(now + 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                osc.start(now); osc.stop(now + 0.2);
             } else if (type === 'click') {
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(600, now);
@@ -2578,14 +2562,6 @@
                 updateCard();
             }, 350);
         };
-
-        function restartPlayMode() {
-            document.getElementById('successScreen').style.display = 'none';
-            document.getElementById('introScreen').style.display = 'block';
-            currentStep = 0;
-            userAnswers = [];
-            noClickCounts = new Array(activeSteps.length).fill(0);
-        }
 
         function handleInteraction(isYes) {
             if (isYes) { playSound('yes'); } else { playSound('no'); }
