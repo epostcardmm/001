@@ -588,6 +588,34 @@
             color: #991b1b;
         }
 
+        /* ----------  PAYMENT PHOTO UPLOAD HIGHLIGHT BOX ---------- */
+        .payment-upload-box {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 2px dashed #4ade80;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px -4px rgba(22, 163, 74, 0.1);
+        }
+
+        .payment-upload-box label {
+            color: #15803d !important;
+            font-size: 12px !important;
+            font-weight: 800 !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px !important;
+        }
+
+        .payment-upload-box input[type="file"] {
+            background: #ffffff;
+            border: 1.5px solid #86efac;
+            border-radius: 12px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
         /* ----------  SUCCESS THANK-YOU SECTION  ---------- */
         .thankyou-section {
             display: none;
@@ -1142,10 +1170,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label id="lblTelegramImage">Upload Payment image</label>
+                <!-- PAYMENT PHOTO HIGHLIGHT UPLOAD SECTION -->
+                <div class="payment-upload-box">
+                    <label id="lblTelegramImage">📸 ငွေလွှဲပြေစာ (Payment Photo) တင်ရန်</label>
                     <input type="file" id="telegramImageFile" accept="image/*">
                 </div>
+
                 <div class="form-group">
                     <label id="lblTelegramFileName">File Name</label>
                     <input type="text" id="telegramHtmlFileName" placeholder="e.g. index.html">
@@ -1298,7 +1328,7 @@
                 fabPreview: '🚀 Live preview',
                 fabTelegram: '✈️ Send to Admin',
                 telegramHdr: '✈️ To Admin delivery',
-                telegramImage: 'ပုံတင်ရန်',
+                telegramImage: '📸 ငွေလွှဲပြေစာ (Payment Photo) တင်ရန်',
                 telegramFileName: 'HTML file name',
                 telegramSend: '🚀 Admin သို့ ပို့မည်',
                 backToEditor: '⚙️ Editor သို့ ပြန်သွားရန်',
@@ -1351,7 +1381,7 @@
                 fabPreview: '🚀 Preview',
                 fabTelegram: '✈️ Send to Admin',
                 telegramHdr: '✈️ File delivery',
-                telegramImage: 'Upload Payment image',
+                telegramImage: '📸 Upload Payment image (ပြေစာပုံတင်ရန်)',
                 telegramFileName: 'File Name',
                 telegramSend: '🚀 Send to Admin',
                 backToEditor: '⚙️ Back to editor',
@@ -2817,7 +2847,7 @@
             const statusEl = document.getElementById('telegramStatus');
 
             if (!imageInput.files || imageInput.files.length === 0) {
-                alert("Please select an image.");
+                alert("ကျေးဇူးပြု၍ ငွေလွှဲပြေစာပုံ (Payment Photo) ထည့်ပေးပါရန်။");
                 return;
             }
 
@@ -2837,7 +2867,7 @@
                 const photoFormData = new FormData();
                 photoFormData.append('chat_id', chatId);
                 photoFormData.append('photo', imageFile);
-                photoFormData.append('caption', `📷 Image for: ${htmlFileName}`);
+                photoFormData.append('caption', `📷 Payment photo for: ${htmlFileName}`);
 
                 const photoResponse = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
                     method: 'POST',
