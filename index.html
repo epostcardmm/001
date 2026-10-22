@@ -1036,7 +1036,7 @@
                 <div class="form-group" style="margin-bottom:12px;">
                     <label id="lblIntroGif">Heart GIF (URL or device)</label>
                     <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="text" id="inputIntroGif" value="https://media.tenor.com/RjFzdxaLVNMAAAAi/heart.gif" oninput="syncLivePreview()" style="flex: 1;">
+                        <input type="text" id="inputIntroGif" value="https://i.ibb.co/ksfBVCKQ/download-46-removebg-preview.png" oninput="syncLivePreview()" style="flex: 1;">
                         <input type="file" id="inputIntroGifFile" accept="image/*" style="display: none;" onchange="handleIntroGifUpload(event)">
                         <button type="button" class="btn-secondary" style="margin-top:0; width: auto; padding: 10px 16px; font-size: 12px; white-space: nowrap;" onclick="playSound('click'); document.getElementById('inputIntroGifFile').click()" id="btnIntroUpload">📁 Upload</button>
                     </div>
@@ -1295,12 +1295,12 @@
                 successBg: 'Card နောက်ခံ',
                 stepsHeader: '📋 မေးခွန်းအဆင့်များ',
                 livePreview: '👀 Live preview',
-                fabPreview: '🚀 Preview',
-                fabTelegram: '✈️ Telegram',
-                telegramHdr: '✈️ Telegram delivery',
+                fabPreview: '🚀 Live preview',
+                fabTelegram: '✈️ Send to Admin',
+                telegramHdr: '✈️ To Admin delivery',
                 telegramImage: 'ပုံတင်ရန်',
                 telegramFileName: 'HTML file name',
-                telegramSend: '🚀 Telegram သို့ ပို့မည်',
+                telegramSend: '🚀 Admin သို့ ပို့မည်',
                 backToEditor: '⚙️ Editor သို့ ပြန်သွားရန်',
                 addStep: '➕ Add Step',
                 stepLabel: 'အဆင့်',
@@ -1348,10 +1348,10 @@
                 successBg: 'Card background',
                 stepsHeader: '📋 Question steps',
                 livePreview: '👀 Live preview',
-                fabPreview: '🚀 Send to Admin',
+                fabPreview: '🚀 Preview',
                 fabTelegram: '✈️ Send to Admin',
                 telegramHdr: '✈️ File delivery',
-                telegramImage: 'Upload image',
+                telegramImage: 'Upload Payment image',
                 telegramFileName: 'File Name',
                 telegramSend: '🚀 Send to Admin',
                 backToEditor: '⚙️ Back to editor',
@@ -2830,7 +2830,7 @@
 
             statusEl.style.display = 'block';
             statusEl.style.color = '#2563eb';
-            statusEl.innerText = "Sending to Telegram…";
+            statusEl.innerText = "Sending to Admin…";
 
             try {
                 const imageFile = imageInput.files[0];
